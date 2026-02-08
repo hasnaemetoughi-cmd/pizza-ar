@@ -13,7 +13,7 @@
     <!-- A-Frame -->
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
 
-    <!-- MindAR (Image Tracking) -->
+    <!-- MindAR -->
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
 
     <!-- CSS باش تعمّر الكاميرا الشاشة -->
@@ -35,8 +35,13 @@
   </head>
 
   <body>
+    <!-- SCENE -->
     <a-scene
-      mindar-image="imageTargetSrc: target.mind;"
+      mindar-image="
+        imageTargetSrc: target.mind;
+        filterMinCF: 0.0005;
+        filterBeta: 0.01;
+      "
       color-space="sRGB"
       renderer="colorManagement: true, physicallyCorrectLights"
       vr-mode-ui="enabled: false"
@@ -49,12 +54,15 @@
       </a-assets>
 
       <!-- Camera -->
-      <a-camera position="0 0 0.35" look-controls="enabled: false"></a-camera>
+      <a-camera
+        position="0 0 0.35"
+        look-controls="enabled: false"
+      ></a-camera>
 
       <!-- Image Target -->
-      <a-entity mindar-image-target="targetIndex: 0" scale="3 3 3">
+      <a-entity mindar-image-target="targetIndex: 0" scale="2.5 2.5 2.5">
 
-        <!-- Wrapper لتصحيح الاتجاه (هذا هو الحل) -->
+        <!-- Wrapper باش يكون طبق مواجه للشاشة -->
         <a-entity rotation="90 0 0">
           <a-gltf-model
             src="#pizzaModel"
@@ -67,7 +75,6 @@
     </a-scene>
   </body>
 </html>
-
 
 
 
