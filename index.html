@@ -48,21 +48,26 @@
         <a-asset-item id="pizzaModel" src="pizza.glb"></a-asset-item>
       </a-assets>
 
-      <!-- Camera (قرّبناها باش يكبر الموديل) -->
-      <a-camera position="0 0 0.15" look-controls="enabled: false"></a-camera>
+      <!-- Camera -->
+      <a-camera position="0 0 0.35" look-controls="enabled: false"></a-camera>
 
-      <!-- Target + تكبير قوي -->
-      <a-entity mindar-image-target="targetIndex: 0" scale="5 5 5">
-        <a-gltf-model
-          src="#pizzaModel"
-          position="0 0.15 0"
-          scale="2.5 2.5 2.5"
-          look-at="[camera]"
-        ></a-gltf-model>
+      <!-- Image Target -->
+      <a-entity mindar-image-target="targetIndex: 0" scale="3 3 3">
+
+        <!-- Wrapper لتصحيح الاتجاه (هذا هو الحل) -->
+        <a-entity rotation="90 0 0">
+          <a-gltf-model
+            src="#pizzaModel"
+            position="0 0 0"
+            scale="1.2 1.2 1.2"
+          ></a-gltf-model>
+        </a-entity>
+
       </a-entity>
     </a-scene>
   </body>
 </html>
+
 
 
 
