@@ -36,11 +36,7 @@
   <body>
     <a-scene
       embedded
-      mindar-image="
-        imageTargetSrc: target.mind;
-        filterMinCF: 0.001;
-        filterBeta: 0.001;
-      "
+      mindar-image="imageTargetSrc: target.mind;"
       renderer="colorManagement: true, physicallyCorrectLights"
       vr-mode-ui="enabled: false"
       device-orientation-permission-ui="enabled: false"
@@ -50,29 +46,41 @@
         <a-asset-item id="pizzaModel" src="pizza.glb"></a-asset-item>
       </a-assets>
 
-      <!-- Camera ثابتة -->
+      <!-- Camera -->
       <a-camera
         position="0 0 0"
         look-controls="enabled: false"
       ></a-camera>
 
       <!-- Image Target -->
-      <a-entity
-        mindar-image-target="
-          targetIndex: 0;
-          smooth: true;
-          smoothCount: 10;
-          smoothTolerance: 0.01;
-          smoothThreshold: 5;
-        "
-      >
-        <!-- Model -->
+      <a-entity mindar-image-target="targetIndex: 0">
+        
+        <!-- Pizza Model with Animation -->
         <a-gltf-model
           src="#pizzaModel"
           position="0 0 0"
           rotation="90 0 0"
-          scale="0.6 0.6 0.6"
+          scale="0.7 0.7 0.7"
+
+          animation__rotate="
+            property: rotation;
+            to: 90 360 0;
+            loop: true;
+            dur: 9000;
+            easing: linear
+          "
+
+          animation__float="
+            property: position;
+            from: 0 0 0;
+            to: 0 0.12 0;
+            dir: alternate;
+            loop: true;
+            dur: 2500;
+            easing: easeInOutSine
+          "
         ></a-gltf-model>
+
       </a-entity>
     </a-scene>
   </body>
